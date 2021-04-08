@@ -8,6 +8,9 @@ services:
     ports:
       - '4040:4040'
       - '7077:7077'
+    volumes:
+      - ./examples:/opt/bitnami/spark/stock
+
   spark-worker-1:
     image: bitnami/spark
     environment:
@@ -15,6 +18,9 @@ services:
       - SPARK_MASTER_URL=spark://spark:7077
       - SPARK_WORKER_MEMORY=2G
       - SPARK_WORKER_CORES=2
+    volumes:
+      - ./examples:/opt/bitnami/spark/stock
+
   spark-worker-2:
     image: bitnami/spark
     environment:
@@ -22,3 +28,5 @@ services:
       - SPARK_MASTER_URL=spark://spark:7077
       - SPARK_WORKER_MEMORY=2G
       - SPARK_WORKER_CORES=2
+    volumes:
+      - ./examples:/opt/bitnami/spark/stock

@@ -24,63 +24,19 @@ public class SparkConfig {
     }
 
     @Bean
-    public JavaSparkContext sc() {
+    public SparkSession sparkSession() {
 
         SparkSession spark = SparkSession.builder()
                 .config(conf())
                 .getOrCreate();
 
-        SparkContext sparkContext = spark.sparkContext();
-        return new JavaSparkContext(sparkContext);
-    }
-
-    // todo clean up
-    /*@Bean
-    public SparkConf conf() {
-        return new SparkConf()
-                .setSparkHome(sparkHome)
-                .set("spark.driver.host", "localhost")
-                .set("spark.driver.port", "4040")
-                .set("spark.driver.allowMultipleContexts", String.valueOf(true))
-                .setAppName(appName)
-                .setMaster(masterUri);
+        return spark;
     }
 
     @Bean
     public JavaSparkContext sc() {
 
-        SparkSession spark = SparkSession.active();
-
-//        SparkSession spark = SparkSession.builder()
-//                .config(conf())
-//                .getOrCreate();
-
-        SparkContext sparkContext = spark.sparkContext();
-
+        SparkContext sparkContext = sparkSession().sparkContext();
         return new JavaSparkContext(sparkContext);
-
-//        Option<SparkSession> activeSession = SparkSession.getActiveSession();
-//        SparkSession sparkSession = activeSession.get();
-//        SparkContext sparkContext = sparkSession.sparkContext();
-//
-//        return new JavaSparkContext(conf());
-    }*/
-
-   /* @Bean
-    public SparkConf sparkConf() {
-        return new SparkConf()
-                .setSparkHome(sparkHome)
-                .setAppName("Standalone Spark Test")
-                .set("spark.driver.host", "10.7.90.150")
-                .set("spark.driver.port", "4040")
-                .setMaster("spark://10.7.90.150:4040")
-                .setJars(new String[]{"/home/arydz/workspace/learning/spring-spark/build/libs/spring-spark-1.0-SNAPSHOT.jar"});
-//                .set("spark.cassandra.connection.host",env.getProperty(AppConfig.CONTACTPOINTS));
     }
-
-    @Bean
-    public JavaSparkContext javaSparkContext() {
-        return new JavaSparkContext(sparkConf());
-    }
-*/
 }
