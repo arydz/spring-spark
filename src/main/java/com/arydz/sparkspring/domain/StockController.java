@@ -7,14 +7,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/stock")
+@RequestMapping("/api")
 public class StockController {
 
     private final StockService stockService;
 
-    @GetMapping
+    @GetMapping("/stock")
     public String loadDataFromFiles() {
         long count = stockService.loadStockData();
+        return "count: " + count;
+    }
+
+    @GetMapping("/person")
+    public String countPerson() {
+        long count = stockService.countPersons();
         return "count: " + count;
     }
 }
