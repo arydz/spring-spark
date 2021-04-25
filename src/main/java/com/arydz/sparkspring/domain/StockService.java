@@ -40,4 +40,10 @@ public class StockService {
         SimpleJob simpleJob = new SimpleJob();
         return simpleJob.callPerson(sparkSession);
     }
+
+    public long readFile() {
+
+        SimpleJob simpleJob = new SimpleJob();
+        return simpleJob.readFile(sparkSession);
+    }
 }

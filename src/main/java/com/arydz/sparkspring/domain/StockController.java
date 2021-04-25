@@ -23,4 +23,10 @@ public class StockController {
         long count = stockService.countPersons();
         return "count: " + count;
     }
+
+    @GetMapping("/file")
+    public String readFile() {
+        long count = stockService.readFile();
+        return "count: " + count;
+    }
 }
